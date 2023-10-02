@@ -1,13 +1,19 @@
 <template>
   <div>
     <div>
-      <h1 class="text-3xl font-bold underline" >test</h1>
+      <login />
     </div>
   </div>
 </template>
 
 <script>
+  import login from './components/login.vue'
+
   export default {
+    name:'App',
+    components: {
+      login,
+    }
     
   }
 </script>
