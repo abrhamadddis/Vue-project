@@ -44,6 +44,9 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
   name: 'login',
   data() {
@@ -54,7 +57,7 @@ export default {
       },
       emailError: '',
       passwordError: '',
-
+      ListOfJobs : [],
     }
   },
 
@@ -67,7 +70,12 @@ export default {
         this.passwordError = 'please enter your password'
       }
       console.log('data is sent', this.formValues)
+    },
+    signIn() {
+        axios
     }
+    
+
   }
 
 
