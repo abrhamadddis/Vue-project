@@ -5,9 +5,11 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    screen: {
-      sm: '375px',
-      lg: '1440px'
+    screens: {
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px",
     },
     extend: {
       colors: {
@@ -16,6 +18,14 @@ module.exports = {
         gradiantFrom: 'rgba(32, 43, 51, 0.4)',
         gradiantTo: 'rgba(32, 43, 51, 0.1)',
         focusColor: 'rgba(236, 46, 0, 0.5)',
+        gradiantbg: 'rgba(32, 43, 51, 0.05)',
+
+        neutral:{
+          lightGrayishCyan: "hsl(180, 52%, 96%)",
+          lightGrayishCyan: "hsl(180, 31%, 95%)",
+          darkGrayishCyan: "hsl(180, 8%, 52%)",
+          veryDarkGrayishCyan: "hsl(180, 14%, 20%)",
+        }
       },
       fontFamily: {
         overPass: ['Overpass', 'sans-serif'],

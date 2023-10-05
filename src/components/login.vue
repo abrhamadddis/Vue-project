@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center h-screen  " >
+  <div class="flex justify-center items-center h-screen">
     <div
       class="flex flex-col items-center justify-center bg-gradient-to-t from-gradiantFrom to-gradiantTo h-1/3 py-48 rounded-2xl w-1/4"
     >
@@ -7,7 +7,7 @@
       <h2 class="text-secondary text-2xl font-sans font-midium pt-4">Login</h2>
       <Form @submit.prevent="submit" class="w-full px-12 pt-4 pb-4">
         <label for="email" class="text-secondary text-sm font-sans font-medium">Email</label>
-      
+
         <input
           type="email"
           id="username "
@@ -16,11 +16,8 @@
         />
         <div v-if="emailError">{{ emailError }}</div>
 
-        
-        
-   
         <label for="password" class="text-secondary text-sm font-sans font-medium">Password</label>
-      
+
         <input
           type="password"
           id="password"
@@ -28,10 +25,7 @@
           class="w-full rounded-md py-1 px-2 focus:outline-none focus:border-2"
         />
         <div v-if="passwordError">{{ passwordError }}</div>
-        
-        
-        
-   
+
         <button
           class="w-full mt-12 bg-primary text-white text-lg font-sans py-2 rounded-md font-medium"
         >
@@ -39,12 +33,10 @@
         </button>
       </Form>
     </div>
- 
   </div>
 </template>
 
 <script>
-
 import axios from 'axios'
 
 export default {
@@ -57,28 +49,41 @@ export default {
       },
       emailError: '',
       passwordError: '',
-      ListOfJobs : [],
+      ListOfJobs: []
     }
   },
 
   methods: {
-    submit() {
-      if(!this.formValues.email) {
+    async submit() {
+      
+      if (!this.formValues.email) {
         this.emailError = 'please enter your email'
+        setTimeout(() => {
+          this.emailError = ''
+        }, 4000)
       }
-      if(!this.formValues.password) {
+      if (!this.formValues.password) {
         this.passwordError = 'please enter your password'
+        setTimeout(() => {
+          this.passwordError = ''
+        }, 4000)
+      }
+      if (!this.emailError && !this.passwordError) {
+        try{
+            const response= await axios.post('http://localhost:8001/auth/users/login', this.formValues)
+            console.log(response)
+            console.log(response.email, response.password)
+              
+            this.$router.push('/jobs')
+          
+        }catch(error){
+          console.log(error)
+        }
+        
       }
       console.log('data is sent', this.formValues)
-    },
-    signIn() {
-        axios
     }
-    
-
   }
-
-
 }
 </script>
 
