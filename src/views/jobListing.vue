@@ -31,9 +31,9 @@
                 <div class="flex gap-2 text-neutral-darkGrayishCyan items-center">
                     <span>1d ago</span>
                     <span class="pb-2">.</span>
-                    <span>Full-Time</span>
+                    <span>{{ item.contract }}</span>
                     <span class="pb-2">.</span>
-                    <span>USA only</span>
+                    <span>{{ item.location }}</span>
                 </div>
                 </div>
                 <div class=" py-3 mb-2 md:hidden">
@@ -41,12 +41,12 @@
                 </div>
             </div>
             <!--right column-->
-            <div class="flex justify-start flex-wrap items-center  md:flex-wrap'">
-                <div class="felx ">
-                <span class="font-bold text-primary bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mr-4 rounded-md cursor-pointer hover:text-white hover:bg-primary" >Frontend</span>
-                <span class="font-bold text-primary bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mr-4 rounded-md cursor-pointer hover:text-white hover:bg-primary" >Senior</span>
+            <div  class="flex justify-start flex-wrap items-center  md:flex-wrap'">
+                <div v-for="skill in item.languages" class="felx ">
+                <span class="font-bold text-primary bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mr-4 rounded-md cursor-pointer hover:text-white hover:bg-primary" >{{ skill }}</span>
+                <!-- <span class="font-bold text-primary bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mr-4 rounded-md cursor-pointer hover:text-white hover:bg-primary" >Senior</span>
                 <span class="font-bold text-primary bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mr-4  rounded-md cursor-pointer hover:text-white hover:bg-primary " >HTML</span>
-                <span class="font-bold text-primary bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mr-4  rounded-md cursor-pointer hover:text-white hover:bg-primary" >Javascript</span>
+                <span class="font-bold text-primary bg-neutral-lightGrayishCyan px-2 pt-2 pb-1 mr-4  rounded-md cursor-pointer hover:text-white hover:bg-primary" >Javascript</span> -->
                 </div>
             </div>
             </div>
