@@ -25,6 +25,7 @@
           class="w-full rounded-md py-1 px-2 focus:outline-none focus:border-2"
         />
         <div v-if="passwordError">{{ passwordError }}</div>
+        
 
         <button
           class="w-full mt-12 bg-primary text-white text-lg font-sans py-2 rounded-md font-medium"
@@ -32,11 +33,13 @@
           Sign in
         </button>
       </Form>
+      <div v-if="incorrectCredentials">{{ incorrectCredentials }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { useAuthStore } from '../stores/useAuth'
 import axios from 'axios'
 
 export default {
@@ -49,7 +52,8 @@ export default {
       },
       emailError: '',
       passwordError: '',
-      ListOfJobs: []
+      incorrectCredentials: '',
+     
     }
   },
 
@@ -69,15 +73,25 @@ export default {
         }, 4000)
       }
       if (!this.emailError && !this.passwordError) {
+        const authStore = useAuthStore()
         try{
             const response= await axios.post('http://localhost:8001/auth/users/login', this.formValues)
             console.log(response)
             console.log(response.email, response.password)
+
+            authStore.setToken(response.data.token);
+            authStore.setUser(response.data.name);
               
             this.$router.push('/jobs')
           
         }catch(error){
           console.log(error)
+          this.incorrectCredentials = error.response.data.message
+          if (this.incorrectCredentials) {
+            setTimeout(() => {
+              this.incorrectCredentials = "";
+            }, 4000);
+          }
         }
         
       }

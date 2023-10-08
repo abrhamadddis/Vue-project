@@ -1,6 +1,5 @@
 <template>
     <div>   
-        <h1>jobListing page</h1>
 
         <div v-for="item in jobList" :key="item.id"  class=" bg-neutral-lightGrayishCyan my-12  " id="dataContainer mx-96" >
             <!-- first card-->
