@@ -1,6 +1,16 @@
 <template>
     <div>   
 
+        <div class="mx-20 my-12">
+            <h1>Sort Job</h1>
+            <div >
+                <label for company>Company</label>
+                <select @change="getPosts(company)" v-model="company" >
+                    <option value="">All Jobs</option>
+                    <Option :value="item.company" v-for="item in mainList" :key="item.id">{{ item.company }}</Option>
+                </select>
+            </div>
+        </div>
         <div v-for="item in jobList" :key="item.id"  class=" bg-neutral-lightGrayishCyan my-12 mx-20  " id="dataContainer mx-96" >
             <!-- first card-->
             <div class=" flex flex-col pl-10 py-8 my-12 w-full  rounded-md bg-white md:flex-row md:justify-between shadow-lg border-primary">
@@ -64,20 +74,30 @@ import axios from 'axios'
         data() {
             return {
                 jobList: [],
-                test: false
+                mainList: [],
+                test: false,
+                company: '',
             }
         },
         methods: {
-             getPosts() {
-               axios
-               .get('http://localhost:8001/api/jobs/') 
-               .then((Response) =>{
-                console.log(Response.data.job)
-                this.jobList = Response.data.job
-               })
-               .catch((error) =>{
+             async getPosts(company) {
+               try{
+                   const response = await axios.get(`http://localhost:8001/api/jobs/?company=${company}`) 
+                   console.log(response.data.job)
+                   this.jobList = response.data.job
+               }
+               catch(error){
                 console.log(error)
-               })
+               }
+            },
+            async getMainPosts(company) {
+               try{
+                   const response = await axios.get('http://localhost:8001/api/jobs/') 
+                   this.mainList = response.data.job
+               }
+               catch(error){
+                console.log(error)
+               }
             },
             convertStringToBoolean(inputString) {
                 const lowerCaseStr = inputString.trim().toLowerCase();
@@ -89,8 +109,9 @@ import axios from 'axios'
                 }
     }
         },
-        created(){
-           this.getPosts()
+        async created(){
+            this.getPosts(this.company)
+            this.getMainPosts()
         }
 
     }

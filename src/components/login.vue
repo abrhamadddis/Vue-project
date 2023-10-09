@@ -77,7 +77,6 @@ export default {
         try{
             const response= await axios.post('http://localhost:8001/auth/users/login', this.formValues)
             console.log(response)
-            console.log(response.email, response.password)
 
             authStore.setToken(response.data.token);
             authStore.setUser(response.data.name);

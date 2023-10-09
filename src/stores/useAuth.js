@@ -7,7 +7,8 @@ export const useAuthStore = defineStore('auth', {
     state: () => ({
         token: localStorage.getItem('token') || null,
         user: null,
-        isAuthenticated: false
+        isAuthenticated: false,
+        company: ''
     }),
     actions: {
         setToken(token) {
@@ -32,6 +33,9 @@ export const useAuthStore = defineStore('auth', {
                 this.isAuthenticated = true;
             }
 
+        },
+        getcompany(){
+            this.company = company
         }
     }
 })
