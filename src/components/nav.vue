@@ -1,5 +1,5 @@
 <template>
-    <div class=" flex justify-center  w-full  pt-4">
+    <div class=" flex justfify-center  w-full  pt-4">
         <div class="flex w-1/2 justify-evenly">
             <router-link class="text-secondary text-xl font-sans font-medium  py-1 px-2 hover:text-primary rounded-md" to="/">Home</router-link>
             
@@ -8,7 +8,7 @@
             <RouterLink  class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/login">LogIn</RouterLink>
             
             <RouterLink   @click="logOutUser" class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/">LogOut</RouterLink>
-            <h1>{{ toggle }}</h1>
+            
         </div>
         
 

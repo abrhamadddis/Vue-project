@@ -1,14 +1,14 @@
 <template>
     <div>   
 
-        <div v-for="item in jobList" :key="item.id"  class=" bg-neutral-lightGrayishCyan my-12  " id="dataContainer mx-96" >
+        <div v-for="item in jobList" :key="item.id"  class=" bg-neutral-lightGrayishCyan my-12 mx-20  " id="dataContainer mx-96" >
             <!-- first card-->
             <div class=" flex flex-col pl-10 py-8 my-12 w-full  rounded-md bg-white md:flex-row md:justify-between shadow-lg border-primary">
             <!--left column-->
             <div class="flex flex-col md:flex-row">
                 <!--image of job-->
                 <div class="mr-2 rounded-full -mt-14 w-16 md:mt-0 md:w-24"> 
-                <img src="./images/photosnap.svg" alt="photoshnap">
+                <img :src="item.logo" alt="photoshnap">
                 </div>
                 <!--job description-->
                 <div class="flex flex-col">
@@ -50,6 +50,7 @@
             </div>
             </div>
         </div>
+        
 
         
 
