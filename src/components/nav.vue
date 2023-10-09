@@ -5,9 +5,9 @@
             
             <router-link class="text-secondary text-xl font-sans font-medium   py-1 px-2 hover:text-primary rounded-md" to="/jobs">Job List</router-link>
             
-            <RouterLink  class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/login">LogIn</RouterLink>
+            <RouterLink v-show="!userLoggedinLoggedOut" class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/login">LogIn</RouterLink>
             
-            <RouterLink   @click="logOutUser" class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/">LogOut</RouterLink>
+            <RouterLink v-show="userLoggedinLoggedOut"   @click="logOutUser" class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/">LogOut</RouterLink>
             
         </div>
         
@@ -19,12 +19,13 @@
 import { useRouter } from 'vue-router';
 import { RouterLink, RouterView } from 'vue-router';
 import { useAuthStore } from '../stores/useAuth';
+
     
     export default {
         name: 'navBar',
         data() {
             return {
-                toggle: true
+                isAuthenticated: false
 
             }
         },
@@ -32,6 +33,13 @@ import { useAuthStore } from '../stores/useAuth';
             logOutUser() {
                 const authStore = useAuthStore()
                 authStore.logOut()
+            }
+               
+        },
+        computed: {
+            userLoggedinLoggedOut(){
+                const authStore = useAuthStore()
+                return authStore.isAuthenticated
             }
         }
 

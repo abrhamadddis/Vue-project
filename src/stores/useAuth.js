@@ -1,6 +1,8 @@
 // import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
+
+
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         token: localStorage.getItem('token') || null,
@@ -22,6 +24,14 @@ export const useAuthStore = defineStore('auth', {
             this.user = null;
             localStorage.removeItem('token')
             this.isAuthenticated = false;
+        },
+        saved() {
+            const savedToken = localStorage.getItem('token');
+            if (savedToken) {
+                this.token = savedToken;
+                this.isAuthenticated = true;
+            }
+
         }
     }
 })
