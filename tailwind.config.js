@@ -19,6 +19,7 @@ module.exports = {
         gradiantTo: 'rgba(32, 43, 51, 0.1)',
         focusColor: 'rgba(236, 46, 0, 0.5)',
         gradiantbg: 'rgba(32, 43, 51, 0.05)',
+        primarytrans: 'rgba(255, 77, 49, 0.3)',
 
         neutral:{
           lightGrayishCyan: "hsl(180, 52%, 96%)",

@@ -1,13 +1,17 @@
 <template>
-    <div class=" flex justfify-center  w-full  pt-4">
-        <div class="flex w-1/2 justify-evenly">
-            <router-link class="text-secondary text-xl font-sans font-medium  py-1 px-2 hover:text-primary rounded-md" to="/">Home</router-link>
+    <div class="  container    mx-auto pt-4 mt-5">
+        <div class="flex justify-between">
+            <div>
+                <router-link class="text-secondary text-xl font-sans font-medium  py-1 px-2 hover:text-primary rounded-md mr-5" to="/">Home</router-link>
+                
+                <router-link class="text-secondary text-xl font-sans font-medium   py-1 px-2 hover:text-primary rounded-md" to="/jobs">Job List</router-link>
+            </div>
             
-            <router-link class="text-secondary text-xl font-sans font-medium   py-1 px-2 hover:text-primary rounded-md" to="/jobs">Job List</router-link>
-            
-            <RouterLink v-show="!userLoggedinLoggedOut" class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/login">LogIn</RouterLink>
-            
-            <RouterLink v-show="userLoggedinLoggedOut"   @click="logOutUser" class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/">LogOut</RouterLink>
+            <div>
+                <RouterLink v-show="!userLoggedinLoggedOut" class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/login">LogIn</RouterLink>
+                
+                <RouterLink v-show="userLoggedinLoggedOut"   @click="logOutUser" class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/">LogOut</RouterLink>
+            </div>
             
         </div>
         

@@ -1,24 +1,35 @@
 <template>
     <div>   
 
-        <div class="mx-20 my-12">
-            <h1>Sort Job</h1>
-            <div >
-                <label for company>Company</label>
-                <select @change="getPosts(company)" v-model="company" >
-                    <option value="">All Jobs</option>
-                    <Option :value="item.company" v-for="item in mainList" :key="item.id">{{ item.company }}</Option>
-                </select>
+        <div class="  flex justify-evenly item-center bg-primarytrans mx-20 my-12 py-4 ">
+            <h1 class="text-sans text-2xl text- ">Find Job</h1>
+            <div class="flex items-c">
+                <div class=" pt-2 pr-10" >
+                    <label class="pr-3 text-base"  for="company" >Company</label>
+                    <select class="pr-10 bg-white text-sans  border-none" @change="getPosts(company)" v-model="company" >
+                        <option value="">All Jobs</option>
+                        <Option  :value="item.company" v-for="item in mainList" :key="item.id">{{ item.company }}</Option>
+                    </select>
+                </div>
+                <div class="pt-2">
+                    <label class="pr-3 text-base" for="sort" >Sort</label>
+                    <select @change="getPosts(company, sort)" v-model="sort" >
+                        <option value="">None</option>
+                        <Option value="company">company</Option>
+                        <Option value="location">Location</Option>
+                    </select>
+                </div>
+
             </div>
         </div>
-        <div v-for="item in jobList" :key="item.id"  class=" bg-neutral-lightGrayishCyan my-12 mx-20  " id="dataContainer mx-96" >
+        <div v-for="item in jobList" :key="item.id"  class=" bg-neutral-lightGrayishCyan my-12 mx-20  " id="dataContainer" >
             <!-- first card-->
             <div class=" flex flex-col pl-10 py-8 my-12 w-full  rounded-md bg-white md:flex-row md:justify-between shadow-lg border-primary">
             <!--left column-->
             <div class="flex flex-col md:flex-row">
                 <!--image of job-->
                 <div class="mr-2 rounded-full -mt-14 w-16 md:mt-0 md:w-24"> 
-                <img :src="item.logo" alt="photoshnap">
+                <img :src="item.logo" alt="companyLogo">
                 </div>
                 <!--job description-->
                 <div class="flex flex-col">
@@ -59,7 +70,17 @@
                 </div>
             </div>
             </div>
+            
         </div>
+    
+        <div class=" flex justify-center py-20 " >
+            
+            <button  @click="previousPage" class="md:block p-3 px-6 pt-2 text-white bg-primary rounded-sm baseline hover:bg-brightRedLight"> Previous </button>
+            <h3 class="mt-2 px-5"> Page {{ page }}</h3>
+            <button   @click="nextPage" class="md:block p-3 px-6 pt-2 text-white bg-primary rounded-sm baseline hover:bg-brightRedLight"> Next </button>
+            
+        </div>
+    
         
 
         
@@ -77,20 +98,25 @@ import axios from 'axios'
                 mainList: [],
                 test: false,
                 company: '',
+                sort: '',
+                page: 1,
+                limit: 4,
+                totalpage: null,
             }
         },
         methods: {
-             async getPosts(company) {
+             async getPosts(company, sort) {
                try{
-                   const response = await axios.get(`http://localhost:8001/api/jobs/?company=${company}`) 
+                   const response = await axios.get(`http://localhost:8001/api/jobs/?company=${company}&sort=${sort}&limit=${this.limit}&page=${this.page}`)
                    console.log(response.data.job)
                    this.jobList = response.data.job
+                   this.totalpage = response.data.totalPages
                }
                catch(error){
                 console.log(error)
                }
             },
-            async getMainPosts(company) {
+            async getMainPosts() {
                try{
                    const response = await axios.get('http://localhost:8001/api/jobs/') 
                    this.mainList = response.data.job
@@ -107,10 +133,28 @@ import axios from 'axios'
                 } else{
                     return false
                 }
-    }
+            },
+            nextPage(){
+                if(this.page < this.totalpage)
+                {
+                    this.page++;
+                    this.getPosts(this.company, this.sort);
+                }
+                
+                
+            },
+            previousPage(){
+                if(this.page > 1){
+                    this.page--;
+                    this.getPosts(this.company, this.sort);
+                }
+                
+                
+            }
+
         },
         async created(){
-            this.getPosts(this.company)
+            this.getPosts(this.company, this.sort)
             this.getMainPosts()
         }
 
