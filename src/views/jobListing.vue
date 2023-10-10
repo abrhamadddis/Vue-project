@@ -1,7 +1,7 @@
 <template>
     <div>   
 
-        <div class="  flex justify-evenly item-center bg-primarytrans mx-20 my-12 py-4 ">
+        <div class="  flex justify-evenly item-center bg-primarytrans mx-20 my-12 py-4  border-8 border-gradient-to- from-primary to-secondary">
             <h1 class="text-sans text-2xl text- ">Find Job</h1>
             <div class="flex items-c">
                 <div class=" pt-2 pr-10" >
