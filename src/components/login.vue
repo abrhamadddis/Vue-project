@@ -14,7 +14,7 @@
           v-model="formValues.email"
           class="w-full rounded-md py-1 px-2 focus:outline-none focus:border-2"
         />
-        <div v-if="emailError">{{ emailError }}</div>
+        <div class="text-red-600 pl-2" v-if="emailError">{{ emailError }}</div>
 
         <label for="password" class="text-secondary text-sm font-sans font-medium">Password</label>
 
@@ -24,7 +24,7 @@
           v-model="formValues.password"
           class="w-full rounded-md py-1 px-2 focus:outline-none focus:border-2"
         />
-        <div v-if="passwordError">{{ passwordError }}</div>
+        <div class="text-red-600 pl-2" v-if="passwordError">{{ passwordError }}</div>
         
 
         <button
@@ -33,7 +33,7 @@
           Sign in
         </button>
       </Form>
-      <div v-if="incorrectCredentials">{{ incorrectCredentials }}</div>
+      <div class="text-red-600" v-if="incorrectCredentials">{{ incorrectCredentials }}</div>
     </div>
   </div>
 </template>
@@ -76,8 +76,6 @@ export default {
         const authStore = useAuthStore()
         try{
             const response= await axios.post('http://localhost:8001/auth/users/login', this.formValues)
-            console.log(response)
-
             authStore.setToken(response.data.token);
             authStore.setUser(response.data.name);
               
@@ -94,7 +92,7 @@ export default {
         }
         
       }
-      console.log('data is sent', this.formValues)
+      
     }
   }
 }

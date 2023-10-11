@@ -8,9 +8,9 @@
             </div>
             
             <div>
-                <RouterLink v-show="!userLoggedinLoggedOut" class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/login">LogIn</RouterLink>
+                <RouterLink v-show="!userLoggedinLoggedOut" class="md:block p-3 px-6 pt-2 text-white bg-primary rounded-full baseline hover:bg-brightRedLight" to="/login">LogIn</RouterLink>
                 
-                <RouterLink v-show="userLoggedinLoggedOut"   @click="logOutUser" class="text-secondary text-xl font-sans font-medium border-x-2 border-r-8 border-y-4  py-1 px-2 hover:text-primary rounded-md" to="/">LogOut</RouterLink>
+                <RouterLink v-show="userLoggedinLoggedOut"   @click="logOutUser" class="md:block p-3 px-6 pt-2 text-white bg-primary rounded-full baseline hover:bg-brightRedLight" to="/">LogOut</RouterLink>
             </div>
             
         </div>

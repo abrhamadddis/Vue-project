@@ -1,19 +1,19 @@
 <template>
     <div>   
 
-        <div class="  flex justify-evenly item-center bg-primarytrans mx-20 my-12 py-4  border-8 border-gradient-to- from-primary to-secondary">
-            <h1 class="text-sans text-2xl text- ">Find Job</h1>
+        <div class="flex justify-evenly item-center bg-gradient-to-l from-primary to-secondary mx-20 my-12 py-4  rounded-md">
+            <h1 class="text-sans text-2xl text-white ">Find Job</h1>
             <div class="flex items-c">
                 <div class=" pt-2 pr-10" >
-                    <label class="pr-3 text-base"  for="company" >Company</label>
-                    <select class="pr-10 bg-white text-sans  border-none" @change="getPosts(company)" v-model="company" >
-                        <option value="">All Jobs</option>
+                    <label class="pr-3 text-base text-white"   for="company" >Company</label>
+                    <select class="pr-20 bg-white text-sans  border-4 rounded border-secondary " @change="getPosts(company)" v-model="company" >
+                        <option class="active:bg-primary" value="">All Jobs</option>
                         <Option  :value="item.company" v-for="item in mainList" :key="item.id">{{ item.company }}</Option>
                     </select>
                 </div>
                 <div class="pt-2">
-                    <label class="pr-3 text-base" for="sort" >Sort</label>
-                    <select @change="getPosts(company, sort)" v-model="sort" >
+                    <label class="pr-3 text-base text-white " for="sort" >Sort</label>
+                    <select class="pr-20 bg-white text-sans  border-4 rounded border-secondary" @change="getPosts(company, sort)" v-model="sort" >
                         <option value="">None</option>
                         <Option value="company">company</Option>
                         <Option value="location">Location</Option>
